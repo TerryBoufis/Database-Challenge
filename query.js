@@ -34,10 +34,16 @@ const addRole = (title, salary, department) => {
 
 const addEmployee = (firstName, lastName, role, manager) => { 
     const params = [firstName, lastName, role, manager]
-    db.query('INSERT INTO department (firstName, lastName, role, manager) VALUES (?) ', params, (err, results) =>{
+    db.query('INSERT INTO employee (firstName, lastName, role, manager) VALUES (?) ', params, (err, results) =>{
         
 })
 }
 
+const updateEmployee = (role) => {
+    const params = [role]
+    db.query('INSERT INTO department (role) VALUES (?) ', params, (err, results) =>{
+        
+})
+}
 
-module.exports = { getDepartments, getRoles, getEmployee, addDepartments, addRole, addEmployee }
+module.exports = { getDepartments, getRoles, getEmployee, addDepartments, addRole, addEmployee, updateEmployee}
