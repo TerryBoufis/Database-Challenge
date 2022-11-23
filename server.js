@@ -11,42 +11,67 @@ const db = mysql.createConnection(
     console.log(`Connected to the books_db database.`)
   );
 
-const promptUser = () => {
+const promptDepartment = () => {
     return inquirer.prompt([
       {
-        type: '',
+        type: 'input',
         name: 'name',
-        message: 'What is your name?',
+        message: 'What new department would you like to add?',
       },
-      {
-        type: 'input',
-        name: '',
-        message: 'Where are you from?',
-      },
-      {
-        type: 'input',
-        name: 'hobby',
-        message: 'What is your favorite hobby?',
-      },
-      {
-        type: 'input',
-        name: 'food',
-        message: 'What is your favorite food?',
-      },
-      {
-        type: 'input',
-        name: 'github',
-        message: 'Enter your GitHub Username',
-      },
-      {
-        type: 'input',
-        name: 'linkedin',
-        message: 'Enter your LinkedIn URL.',
-      },
-    ]);
+    ]) .then(departmentName => {
+          addDepartments(departmentName.name) 
+  }) 
   };
-  
+
+
+  const promptRole = () => {
+    return inquirer.prompt([
+  {
+    type: 'input',
+    name: 'roleName',
+    message: 'What new department would you like to add?',
+  },
+  {
+    type: 'input',
+    name: 'salary',
+    message:'',
+  },
+]) .then( roleAnswers => {
+    addDepartments(roleAnswers.rolename, roleAnswers.salary)
+  }) 
+};
+
+const promptEmployee = () => {
+  return inquirer.prompt([
+{
+  type: 'input',
+  name: 'roleName',
+  message: 'What new department would you like to add?',
+},
+{
+  type: 'input',
+  name: 'salary',
+  message:'',
+},
+]) .then( roleAnswers => {
+  addDepartments(roleAnswers.rolename, roleAnswers.salary)
+}) 
+};
 
 
 
 
+
+
+    const init = () => {
+      promptManagerQuestions()
+        .then((answers) => { 
+          const manager = new Manager(answers.name, answers.id, answers.email, answers.officeNumber)
+          team.push(manager)
+          promptTeamMemberQuestions()
+        })
+        .then(() => console.log('Successfully wrote to index.html'))
+        .catch((err) => console.error(err));
+    };
+    
+    init();
